@@ -22,8 +22,8 @@ import { Cat } from './cats/entities/cat.entity';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'password',
-      database: 'chitchat',
+      password: '123456', //password
+      database: 'myblog', //chitchat
       entities: [Cat],
       synchronize: true, // shouldn't be used in production - otherwise you can lose production data
     }),

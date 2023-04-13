@@ -9,18 +9,23 @@ import { Cat } from './entities/cat.entity';
 export class CatsService {
   constructor(
     @InjectRepository(Cat)
-    private CatRepository: Repository<Cat>,
+    private catRepository: Repository<Cat>,
   ) {}
   create(createCatDto: CreateCatDto) {
-    return 'This action adds a new cat';
+    // createCatDto.username =
+    // createCatDto.password
+    // createCatDto.realname
+    // createCatDto.state
+    return this.catRepository.create(createCatDto);
   }
 
-  findAll() {
-    return `This action returns all cats`;
+  async findAll() {
+    return await this.catRepository.find();
+    // return `This action returns all cats`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} cat`;
+  async findOne(id: number) {
+    return await this.catRepository.findBy({ id });
   }
 
   update(id: number, updateCatDto: UpdateCatDto) {

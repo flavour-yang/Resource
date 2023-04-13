@@ -6,11 +6,16 @@ export class Cat {
   id: number;
 
   @Column()
-  firstName: string;
+  username: string;
 
   @Column()
-  lastName: string;
+  password: string;
 
-  @Column({ default: true })
-  isActive: boolean;
+  @Column()
+  realname: string;
+
+  @Column()
+  state: string;
+  @Column()
+  created_time: string;
 }
