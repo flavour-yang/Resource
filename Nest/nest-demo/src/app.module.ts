@@ -12,7 +12,11 @@ import { CatsService } from './cats/cats.service';
 import { LoggerMiddleware } from './logger.middleware';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
-import { Cat } from './cats/entities/cat.entity';
+import { Cats } from './cats/entities/cats.entity';
+import { UsersModule } from './users/users.module';
+import { User } from './users/entities/user.entity';
+import { UsersController } from './users/users.controller';
+import { UsersService } from './users/users.service';
 
 @Module({
   imports: [
@@ -22,22 +26,22 @@ import { Cat } from './cats/entities/cat.entity';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: '123456', //password
-      database: 'myblog', //chitchat
-      entities: [Cat],
+      password: 'password', //password
+      database: 'chitchat', //chitchat
+      entities: [User],
       synchronize: true, // shouldn't be used in production - otherwise you can lose production data
     }),
+    UsersModule,
   ],
-  controllers: [AppController, CatsController],
-  providers: [AppService, CatsService],
+  controllers: [AppController, CatsController, UsersController],
+  providers: [AppService, CatsService, UsersService],
 })
 export class AppModule implements NestModule {
   constructor(private dataSource: DataSource) {}
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(LoggerMiddleware)
-      // .exclude('cats/(.*)') // 排除监听的路由
-      .forRoutes({ path: 'cats', method: RequestMethod.ALL }); // 监听对应的路由
+    consumer.apply(LoggerMiddleware);
+    // .exclude('cats/(.*)') // 排除监听的路由
+    // .forRoutes({ path: 'cats', method: RequestMethod.ALL })
   }
 }
 

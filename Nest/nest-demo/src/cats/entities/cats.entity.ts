@@ -1,12 +1,15 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Cat {
+export class Cats {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ length: 50 })
   username: string;
+
+  // @Column()
+  // username: string;
 
   @Column()
   password: string;
@@ -16,6 +19,6 @@ export class Cat {
 
   @Column()
   state: string;
-  @Column()
-  created_time: string;
+  // @Column()
+  // created_time: string;
 }

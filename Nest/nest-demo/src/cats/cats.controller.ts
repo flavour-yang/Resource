@@ -14,8 +14,8 @@ import {
 import { LoggingInterceptor } from 'src/logging.interceptor';
 import { TransformInterceptor } from 'src/transform.interceptor';
 import { CatsService } from './cats.service';
-import { CreateCatDto } from './dto/create-cat.dto';
-import { UpdateCatDto } from './dto/update-cat.dto';
+import { CreateCatDto } from './dto/create-cats.dto';
+import { UpdateCatDto } from './dto/update-cats.dto';
 
 @UseInterceptors(LoggingInterceptor, TransformInterceptor)
 @Controller('cats')
@@ -28,15 +28,20 @@ export class CatsController {
   }
 
   @Get()
-  findAll() {
+  async findAll() {
     console.log('findAll...');
     // throw new HttpException('BAD_GATEWAY', HttpStatus.BAD_GATEWAY);
-    return this.catsService.findAll();
+    return await this.catsService.findAll();
   }
 
+  // @Get(':id')
+  // findById(@Param('id') id: string) {
+  //   return this.catsService.findById(id);
+  // }
+
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.catsService.findOne(+id);
+  async findOne(@Param('id', ParseIntPipe) id: number) {
+    return await this.catsService.findOne(id);
   }
 
   @Patch(':id')
