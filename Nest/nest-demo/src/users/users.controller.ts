@@ -21,6 +21,7 @@ export class UsersController {
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
+    // createUserDto.id = null
     return this.usersService.create(createUserDto);
   }
 

@@ -4,19 +4,22 @@ import {
   NestModule,
   RequestMethod,
 } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { LoggerMiddleware } from './logger.middleware';
+import { DataSource } from 'typeorm';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+
 import { CatsController } from './cats/cats.controller';
 import { CatsModule } from './cats/cats.module';
 import { CatsService } from './cats/cats.service';
-import { LoggerMiddleware } from './logger.middleware';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { DataSource } from 'typeorm';
 import { Cats } from './cats/entities/cats.entity';
-import { UsersModule } from './users/users.module';
-import { User } from './users/entities/user.entity';
+
 import { UsersController } from './users/users.controller';
+import { UsersModule } from './users/users.module';
 import { UsersService } from './users/users.service';
+import { User } from './users/entities/user.entity';
 
 @Module({
   imports: [
