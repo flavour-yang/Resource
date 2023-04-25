@@ -1,4 +1,4 @@
-import { Injectable, Put } from '@nestjs/common';
+import { Get, Injectable, Put } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -21,6 +21,13 @@ export class UsersService {
 
   findOne(id: number) {
     return this.userRepository.findBy({ id });
+  }
+
+  @Get()
+  findUser(username: string, password: string) {
+    return this.userRepository.find({
+      where: { username, password },
+    });
   }
 
   @Put()

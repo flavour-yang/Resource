@@ -20,6 +20,9 @@ import { UsersController } from './users/users.controller';
 import { UsersModule } from './users/users.module';
 import { UsersService } from './users/users.service';
 import { User } from './users/entities/user.entity';
+import { AuthModule } from './auth/auth.module';
+import { AuthController } from './auth/auth.controller';
+import { AuthService } from './auth/auth.service';
 
 @Module({
   imports: [
@@ -30,14 +33,15 @@ import { User } from './users/entities/user.entity';
       port: 3306,
       username: 'root',
       password: 'password', //password
-      database: 'chitchat', //chitchat
+      database: 'myblog', //chitchat
       entities: [User],
       synchronize: true, // shouldn't be used in production - otherwise you can lose production data
     }),
     UsersModule,
+    AuthModule,
   ],
-  controllers: [AppController, CatsController, UsersController],
-  providers: [AppService, CatsService, UsersService],
+  controllers: [AppController, CatsController, UsersController, AuthController],
+  providers: [AppService, CatsService, UsersService, AuthService],
 })
 export class AppModule implements NestModule {
   constructor(private dataSource: DataSource) {}
