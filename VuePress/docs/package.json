@@ -1,0 +1,22 @@
+{
+  "name": "resource",
+  "version": "0.0.1",
+  "description": "记录前端内容",
+  "main": "index.js",
+  "authors": {
+    "name": "平阳",
+    "email": "eraimm@gmail.com"
+  },
+  "repository": "/resource",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.5.3"
+  },
+  "dependencies": {
+    "vuepress-theme-reco": "^1.6.17"
+  }
+}
