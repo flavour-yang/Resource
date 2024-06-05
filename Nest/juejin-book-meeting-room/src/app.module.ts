@@ -9,6 +9,7 @@ import { UserModule } from './user/user.module';
 import { RedisModule } from './redis/redis.module';
 import { EmailModule } from './email/email.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TestaModule } from './testa/testa.module';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     UserModule,
     RedisModule,
     EmailModule,
+    TestaModule,
   ],
   controllers: [AppController],
   providers: [AppService],
