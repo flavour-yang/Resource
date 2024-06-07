@@ -11,9 +11,7 @@ import { CoffeesService } from './coffees.service';
 
 @Controller('coffees')
 export class CoffeesController {
-  constructor(private readonly coffeesService: CoffeesService) {
-    
-  }
+  constructor(private readonly coffeesService: CoffeesService) {}
 
   @Get('page')
   pagination(@Query() paginationQuery) {
@@ -23,7 +21,8 @@ export class CoffeesController {
 
   @Get('/flavours')
   findAll() {
-    return 'this action returns all coffees';
+    return this.coffeesService.findAll();
+    // return 'this action returns all coffees';
   }
   // @Get('/flavours')
   // findAll(@Res() response) {
@@ -31,7 +30,8 @@ export class CoffeesController {
   // }
   @Get(':id')
   findOne(@Param() params) {
-    return `this action returns #${params.id} coffee`;
+    return this.coffeesService.findOne(params.id);
+    // return `this action returns #${params.id} coffee`;
   }
 
   @Post()
