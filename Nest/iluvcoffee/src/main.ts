@@ -9,6 +9,9 @@ async function bootstrap() {
       whitelist: true,
       transform: true,
       forbidNonWhitelisted: true,
+      transformOptions: {
+        enableImplicitConversion: true, // 全局类型推断, 不需要单独写@Type 类型转换
+      },
     }),
   );
   await app.listen(3000);
