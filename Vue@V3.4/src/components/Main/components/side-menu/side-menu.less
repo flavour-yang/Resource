@@ -1,0 +1,70 @@
+.side-menu-wrapper {
+  user-select: none;
+  background-color: #001529;
+  .menu-collapsed {
+    padding-top: 10px;
+
+    .ivu-dropdown {
+      width: 100%;
+      .ivu-dropdown-rel a {
+        width: 100%;
+      }
+    }
+    .ivu-tooltip {
+      width: 100%;
+      .ivu-tooltip-rel {
+        width: 100%;
+      }
+      .ivu-tooltip-popper .ivu-tooltip-content {
+        .ivu-tooltip-arrow {
+          border-right-color: #fff;
+        }
+        .ivu-tooltip-inner {
+          background: #fff;
+          color: #495060;
+        }
+      }
+    }
+  }
+  a.drop-menu-a {
+    display: inline-block;
+    padding: 6px 15px;
+    width: 100%;
+    text-align: center;
+    color: #495060;
+  }
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .menu {
+    flex: 1;
+    height: 0;
+    overflow: auto;
+  }
+  .ivu-menu-dark {
+    background-color: #001529;
+  }
+  .ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened {
+    background-color: #000c17;
+  }
+  .ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened .ivu-menu-submenu-title {
+    background-color: #001529;
+    &:hover {
+      background-color: #001529;
+    }
+  }
+  .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title {
+    &:hover {
+      background-color: #001529;
+    }
+  }
+}
+.menu-title {
+  padding-left: 6px;
+}
+
+li.single-menu-item.ivu-menu-item i {
+  margin-right: 8px !important;
+}

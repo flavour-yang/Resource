@@ -1,0 +1,159 @@
+.no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.size {
+  width: 100%;
+  height: 100%;
+}
+
+.tags-nav {
+  position: relative;
+  border-top: 1px solid #F0F0F0;
+  border-bottom: 1px solid #F0F0F0;
+  .no-select;
+  .size;
+
+  .close-con {
+    position: absolute;
+    right: 0px;
+    top: 0;
+    height: 100%;
+    width: 132px;
+    background: #fff;
+    text-align: center;
+    z-index: 11;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // border-right: 1px solid #ccc;
+  }
+
+  .full-con {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 32px;
+    background: #fff;
+    text-align: center;
+    z-index: 10;
+  }
+
+  .btn-con {
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    background: #fff;
+    padding-top: 3px;
+    z-index: 10;
+
+    button {
+      padding: 6px 4px;
+      line-height: 14px;
+      text-align: center;
+    }
+
+    &.left-btn {
+      left: 0px;
+      width: 28px;
+      text-align: center;
+    }
+
+    &.right-btn {
+      right: 132px;
+      width: 28px;
+      text-align: center;
+      border-right: 1px solid #F0F0F0;
+    }
+  }
+
+  .scroll-outer {
+    background-color: #fff;
+    position: absolute;
+    left: 28px;
+    right: 160px;
+    top: 0;
+    bottom: 0;
+    // box-shadow: 0px 0 3px 2px rgba(100, 100, 100, .1) inset;
+
+    .scroll-body {
+      height: ~"calc(100% - 1px)";
+      display: inline-block;
+      padding: 0px 4px 0;
+      position: absolute;
+      overflow: visible;
+      white-space: nowrap;
+      transition: left .3s ease;
+
+      .ivu-tag-dot-inner {
+        transition: background .2s ease;
+      }
+
+      .tag-dot {
+        height: 38px;
+        line-height: 38px;
+        margin-top: 0px;
+        border-radius: 0px;
+        color: #515a6e !important;
+        background: #fff;
+        padding: 0 12px;
+        border-left: 1px solid #f4f6f9;
+        border-right: 1px solid #f4f6f9;
+        border-top: 0px;
+        border-bottom: 0px;
+        margin-right: 0px;
+      }
+
+      .tag-dot-main::before {
+        content: "\F3C3";
+      }
+
+      .tag-dot-choosed {
+        border-top: 2px solid #2D8cF0;
+        color: #2D8cF0 !important;
+        background-color: #f4f6f9 !important;
+        /*抵消border的宽度向下挤压文本*/
+        line-height: 35px;
+
+        span {
+          color: #2D8cF0 !important;
+        }
+
+        i{
+          color: #2D8cF0 !important;
+        }
+
+        /deep/ i:before {
+          color: #2D8cF0;
+        }
+      }
+    }
+  }
+
+  .contextmenu {
+    position: absolute;
+    margin: 0;
+    padding: 5px 0;
+    background: #fff;
+    z-index: 1000;
+    list-style-type: none;
+    border-radius: 4px;
+    box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, .1);
+
+    li {
+      margin: 0;
+      padding: 5px 15px;
+      cursor: pointer;
+
+      &:hover {
+        background: #eee;
+      }
+    }
+  }
+}

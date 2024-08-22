@@ -1,0 +1,123 @@
+.main {
+  .logo-con {
+    display: flex;
+    align-items: center;
+    padding: 18px;
+
+    span {
+      color: #fff;
+      font-size: 22px;
+      font-weight: bolder;
+      display: inline-block;
+      padding-left: 18px;
+    }
+
+    img {
+      display: inline-block;
+      width: 29px;
+    }
+  }
+
+  .header-con {
+    background-color: #fff;
+    opacity: 1;
+    padding: 0 8px;
+    width: 100%;
+    line-height: normal;
+  }
+
+  .header-action {
+    background-color: #f6f6f6;
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    cursor: pointer;
+    &:hover {
+      box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.1);
+    }
+  }
+  .header-action-active {
+    color: #2b85e4;
+  }
+  .main-layout-con {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .main-content-con {
+    height: ~'calc(100% - 60px)';
+    overflow: hidden;
+  }
+
+  .tag-nav-wrapper {
+    padding: 0;
+    height: 40px;
+    background: #f0f0f0;
+  }
+
+  .content-wrapper {
+    padding: 10px 14px 10px 10px;
+    height: ~'calc(100% - 80px)';
+    overflow: auto;
+  }
+}
+.ivu-menu-vertical .ivu-menu-item {
+  padding-right: 16px;
+}
+.ivu-menu-item {
+  padding-left: 36px !important;
+}
+.ivu-menu-item > i {
+  margin-right: 12px !important;
+}
+
+.ivu-menu.ivu-menu-submenu > li {
+  padding-left: 20px !important;
+}
+
+.collased-menu-dropdown {
+  display: block !important;
+  width: 100%;
+  margin: 0;
+  line-height: normal;
+  padding: 7px 16px;
+  clear: both;
+  font-size: 12px !important;
+  white-space: nowrap;
+  list-style: none;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+
+  &:hover {
+    background: rgba(100, 100, 100, 0.1);
+  }
+
+  & * {
+    color: #515a6e;
+  }
+
+  .ivu-menu-item > i {
+    margin-right: 12px !important;
+  }
+
+  .ivu-menu-submenu > .ivu-menu > .ivu-menu-item > i {
+    //margin-right: 8px !important;
+  }
+}
+
+.ivu-select-dropdown.ivu-dropdown-transfer {
+  max-height: 400px;
+}
+
+.ivu-grobal-background {
+  background-color: #fff;
+  border-radius: 6px;
+}
+.reload-icon {
+  margin-right: 10px;
+  cursor: pointer;
+}
+.ivu-back-top-inner {
+  display: flex;
+  flex-direction: column;
+}
