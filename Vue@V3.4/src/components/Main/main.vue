@@ -18,7 +18,7 @@
       <a-layout-sider :theme="app.theme" class="right-sider">
         <a-space>
           <a-dropdown @select="handleSelect">
-            <a-avatar style="cursor: pointer;">{{ '头像' }}</a-avatar>
+            <a-avatar :size="32" style="cursor: pointer;">{{ '头像' }}</a-avatar>
             <template #content>
               <a-doption>修改密码</a-doption>
               <a-doption>退出登录</a-doption>
