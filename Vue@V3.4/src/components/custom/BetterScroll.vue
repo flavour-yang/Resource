@@ -1,4 +1,4 @@
-<!-- copy form https://github.com/soybeanjs/soybean-admin-->
+<!-- copy form https://github.com/soybeanjs/soybean-admin -->
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
 import { useElementSize } from '@vueuse/core'

@@ -3,6 +3,7 @@ import storageHelper from '@/libs/helpers/storage-helper'
 import { defineStore } from 'pinia'
 import menuRouterHelper from '@/libs/helpers/menu-router-helper'
 import router from '@/router'
+import { isValidKey } from '@/env.d'
 export interface UserInfo {
   [key: string]: string | number | boolean
 }
@@ -10,6 +11,7 @@ export interface UserState {
   userInfo: UserInfo
   menuList: any[]
   app: object
+  navTab: any[]
 }
 
 export const useAppStore = defineStore('app', {
@@ -20,7 +22,8 @@ export const useAppStore = defineStore('app', {
       fontSize: 14,
       theme: 'dark',
       layout: 'top' // side | top| mix
-    }
+    },
+    navTab: []
   }),
   actions: {
     async login(payload: any) {
@@ -41,6 +44,13 @@ export const useAppStore = defineStore('app', {
         return true
       } else {
         return false
+      }
+    },
+    setState(state: UserState) {
+      for (const key in state) {
+        if (isValidKey(key, state)) {
+          this[key] = state[key]
+        }
       }
     }
   }

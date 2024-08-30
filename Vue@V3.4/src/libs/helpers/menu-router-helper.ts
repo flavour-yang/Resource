@@ -576,7 +576,7 @@ const menuRouterHelper: any = {
         if (el.rightType == 2 && children && children.length > 0) {
           item.children = loadTreeData(children)
           // @ts-ignore
-          item.component = () => import('@/components/Main')
+          item.component = () => import('@/layout/Main')
           itemResult.push(item)
         } else if (el.rightType == 3 && el.component) {
           try {

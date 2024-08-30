@@ -28,9 +28,10 @@
         </a-space>
       </a-layout-sider>
     </a-layout>
-    <Breadcrumb />
-    <tags-nav :value="$route" @input="handleClick" :list="tagNavList" @on-close="handleCloseTag" />
+    <!-- :value="$route"  @input="handleClick" :list="tagNavList" @on-close="handleCloseTag" -->
     <a-layout-content>
+      <Breadcrumb />
+      <tags-nav />
       <router-view />
     </a-layout-content>
   </a-layout>
@@ -124,9 +125,10 @@ import {
   IconBug,
   IconBulb,
 } from '@arco-design/web-vue/es/icon';
-import Breadcrumb from './components/Breadcrumb/index.vue'
 import { useAppStore } from '@/stores/modules/app'
 import { useRoute, useRouter } from 'vue-router';
+import Breadcrumb from './components/Breadcrumb/index.vue'
+import TagsNav from "./components/tags-nav";
 
 export default {
   components: {
@@ -135,7 +137,8 @@ export default {
     IconApps,
     IconBug,
     IconBulb,
-    Breadcrumb
+    Breadcrumb,
+    TagsNav
   },
   setup() {
     const appStroe = useAppStore()
@@ -151,8 +154,15 @@ export default {
     watch(route, ($route) => {
       selectedKeys.value = [$route.name]
     })
-    const toPage = ({ path }) => {
+    const toPage = (_route) => {
+      const { path, name } = _route
       router.push(path)
+      const find = appStroe.navTab.find(f => f.name === _route.name)
+      const navTab = appStroe.navTab
+      if (!find) {
+        navTab.push(_route)
+        appStroe.setState({ navTab })
+      }
     }
     console.log(appStroe)
     return {

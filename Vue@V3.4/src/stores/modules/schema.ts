@@ -1,3 +1,4 @@
+import { isValidKey } from '@/env.d'
 import $http from '@/libs/http'
 import { defineStore } from 'pinia'
 
@@ -24,12 +25,6 @@ interface DataBase {
   filters?: {
     [key: string]: any
   }
-}
-export function isValidKey(
-  key: string | number | symbol,
-  object: object
-): key is keyof typeof object {
-  return key in object
 }
 export const useSchemaStore = defineStore('schema', {
   state: (): SchemaState => ({

@@ -9,6 +9,13 @@
 // }
 export {}
 
+export function isValidKey(
+  key: string | number | symbol,
+  object: object
+): key is keyof typeof object {
+  return key in object
+}
+
 export interface ParticlesJS {
   load: (arg: string, arg1: string, arg2: any) => void
 }
