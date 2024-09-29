@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, ValidationPipe } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CoffeesController } from './coffees/coffees.controller';
@@ -7,6 +7,8 @@ import { CoffeesModule } from './coffees/coffees.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
 import { ConfigModule } from '@nestjs/config';
+import appConfig from './config/app.config';
+import { APP_PIPE } from '@nestjs/core';
 // TypeOrmModule.forRoot({
 //   type: 'postgres',
 //   host: process.env.DATABASE_HOST,
@@ -21,6 +23,7 @@ import { ConfigModule } from '@nestjs/config';
   imports: [
     CoffeesModule,
     ConfigModule.forRoot({
+      load: [appConfig],
       // ignoreEnvFile: true  // 忽略.env文件
     }),
     TypeOrmModule.forRoot({
@@ -36,6 +39,6 @@ import { ConfigModule } from '@nestjs/config';
     CoffeeRatingModule,
   ],
   controllers: [AppController, CoffeesController],
-  providers: [AppService],
+  providers: [AppService, { provide: APP_PIPE, useClass: ValidationPipe }],
 })
 export class AppModule {}
