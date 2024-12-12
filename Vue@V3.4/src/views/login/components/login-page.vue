@@ -11,17 +11,13 @@
         <div class="form-content">
           <a-card title="欢迎登录">
             <hy-form :model="model" @submit-success="login" class="login-form">
-              <a-row :gutter="[0, 12]">
-                <a-col :span="24">
-                  <hy-input v-model="model.account" label="用户" disabled field="account" :required="true" />
-                </a-col>
-                <a-col :span="24">
-                  <hy-input v-model="model.passwordStr" label="密码" field="passwordStr" :required="true" />
-                </a-col>
-                <a-col :span="24">
-                  <a-button type="primary" html-type="submit" long :loading="loading">登录</a-button>
-                </a-col>
-              </a-row>
+              <!-- <a-row :gutter="[0, 12]"> -->
+              <hy-input :span="24" v-model="model.account" label="用户" disabled field="account" :required="true" />
+              <hy-input :span="24" v-model="model.passwordStr" label="密码" field="passwordStr" :required="true" />
+              <a-col :span="24">
+                <a-button type="primary" html-type="submit" long :loading="loading">登录</a-button>
+              </a-col>
+              <!-- </a-row> -->
             </hy-form>
           </a-card>
         </div>
@@ -46,7 +42,7 @@ const { $config } = getCurrentInstance()?.appContext.config.globalProperties
 const appStroe = useAppStore()
 const router = useRouter()
 const loginForm = ref() as any
-const model = reactive({ account: 'hwadmin', passwordStr: '1qaz@WSX' })
+const model = reactive({ account: 'hwadmin', passwordStr: '123456' }) // 1qaz@WSX
 const data = reactive({
   loading: false,
   img: {

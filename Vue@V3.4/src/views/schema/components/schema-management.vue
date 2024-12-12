@@ -6,7 +6,8 @@
       </a-tab-pane>
       <a-tab-pane key="2" title="配置">
         <hy-form>
-          <hy-textarea v-model="data.textareaValue" ref="textarea" :labelColProps="{span: 1}" :auto-size="{minRows:6, maxRows: 35}" />
+          <hy-textarea v-model="data.textareaValue" ref="textarea" :labelColProps="{ span: 1 }"
+            :auto-size="{ minRows: 6, maxRows: 35 }" />
         </hy-form>
       </a-tab-pane>
     </a-tabs>

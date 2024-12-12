@@ -1,11 +1,11 @@
 <template>
-  <hy-table :pagination="false" :columns="data.columns" :requestFun="schemaStore.getDatabase" :params="params">
+  <hy-table :pagination="false" :columns="data.columns" :api="schemaStore.getDatabase" :model="params">
     <template #search>
       <hy-input v-model="params.tableName" label="表名" />
       <hy-input v-model="params.whereStatement" label="查询语句" />
     </template>
-    <template #action="{record,value}">
-      <a-button @click="clickRow({record,value})">查看</a-button>
+    <template #action="{ record, value }">
+      <a-button @click="clickRow({ record, value })">查看</a-button>
     </template>
   </hy-table>
 </template>
@@ -52,7 +52,7 @@ onMounted(() => {
   //   params.tableName = route.query.tableName
   // }
 })
-const clickRow = ({ record, value }: { record: any; value: any }) => {}
-// const requestFun = () => schemaStore.schema
+const clickRow = ({ record, value }: { record: any; value: any }) => { }
+// const api = () => schemaStore.schema
 // schemaStore.schema({})
 </script>

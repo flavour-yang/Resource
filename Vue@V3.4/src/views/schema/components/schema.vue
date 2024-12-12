@@ -1,13 +1,14 @@
 <template>
   <a-checkbox v-model="showHidden" @change="onChange">显示hidden字段</a-checkbox>
-  <hy-table ref="tableIt" :hasSearch="false" :pagination="false" :columns="columns" :requestFun="schemaStore.schema">
-    <template #action="{record,value}">
-      <a-button @click="onRow({record,value})">编辑</a-button>
+  <hy-table ref="tableIt" :hasSearch="false" :pagination="false" :columns="columns" :api="schemaStore.schema">
+    <template #action="{ record, value }">
+      <a-button @click="onRow({ record, value })">编辑</a-button>
     </template>
   </hy-table>
-  <hy-modal ref="editModal" @on-success="onSuccess" :requestFun="schemaStore.save" :params="selfData.params" :beforeClose="beforeClose">
+  <hy-modal ref="editModal" @on-success="onSuccess" :api="schemaStore.save" :model="selfData.params"
+    :beforeClose="beforeClose">
     <template #title>
-      {{selfData.currentRow.tableName}}
+      {{ selfData.currentRow.tableName }}
     </template>
     <hy-textarea v-model="selfData.currentStrRow" />
   </hy-modal>
@@ -118,5 +119,4 @@ const onChange = (value: boolean | (string | number | boolean)[]) => {
 // const requestFun = () => schemaStore.schema
 // schemaStore.schema({})
 </script>
-<style lang="less" scoped>
-</style>
+<style lang="less" scoped></style>

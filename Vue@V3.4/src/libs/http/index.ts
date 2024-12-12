@@ -15,7 +15,8 @@ class HttpRequestCommon {
       method: 'post',
       data
     })
-    return res.data
+    if (res.data) return res.data
+    return res
   }
 
   /**
@@ -33,7 +34,8 @@ class HttpRequestCommon {
       params,
       headers
     })
-    return res.data
+    if (res.data) return res.data
+    return res
   }
 
   /**
@@ -50,7 +52,8 @@ class HttpRequestCommon {
       method: 'delete',
       params
     })
-    return res.data
+    if (res.data) return res.data
+    return res
   }
 }
 

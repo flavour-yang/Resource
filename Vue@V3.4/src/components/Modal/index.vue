@@ -1,7 +1,8 @@
 <template>
-  <a-modal v-model:visible="visible" @ok="onOk" @cancel="onCancel" :width="props.width">
+  <a-modal v-model:visible="visible" v-bind="_props">
     <template #title>
       <slot name="title">
+        {{ title }}
       </slot>
     </template>
     <slot>
@@ -14,7 +15,8 @@
 </template>
 
 <script lang='ts' setup>
-import { toRefs } from 'vue'
+import { Message } from '@arco-design/web-vue';
+import { computed, toRefs, watch } from 'vue'
 import { reactive } from 'vue'
 
 const props = defineProps({
@@ -32,47 +34,101 @@ const props = defineProps({
       return customWidth
     }
   },
-  requestFun: {
+  title: { type: String },
+  api: {
     type: Function
   },
-  params: {
+  initModelHandle: {
+    type: Function
+  },
+  model: {
     type: Object || Array,
-    default: () => {}
+    default: () => { }
   },
   beforeClose: {
     type: Function
-  }
+  },
+  alignCenter: { default: false },
+  top: {
+    type: Number || String,
+    default: 100
+  },
+  hideCancel: { type: Boolean }
 })
 
+
 const data = reactive({
-  visible: false
+  visible: false,
+  hide: false
 })
 
 const { visible } = toRefs(data)
-const open = () => {
+
+
+const _props = computed(() => ({
+  width: props.width,
+  onBeforeOk,
+  onOk,
+  onCancel,
+  alignCenter: props.alignCenter,
+  top: props.top,
+  hideCancel: props.hideCancel ? props.hideCancel : data.hide
+}))
+
+// watch([visible], () => {
+//   initModelHandle()
+// },)
+
+
+const open = (row: any) => {
   data.visible = true
+  props.initModelHandle && props.initModelHandle(row)
 }
-const onOk = async () => {
-  if (props.beforeClose) {
-    await props.beforeClose()
-  }
-  if (props.requestFun) {
+
+const requestIt = async () => {
+  if (props.api) {
     try {
-      const _params = props.params || {}
-      // console.log(JSON.parse(props.params)[13], JSON.parse(_params))
-      // 'ut_ast_estate'
-      const res = await props.requestFun(_params)
-      $emits('on-success', res)
+      data.hide = true
+      const _params = props.model || {}
+      const res = await props.api(_params)
+      if (res.success) {
+        Message.success('保存成功')
+        $emits('success', res)
+        data.visible = false
+        return true
+      }
+    } catch {
+      new Error('api 调用失败')
+      return false
     } finally {
-      data.visible = false
+      data.hide = false
     }
   }
-  data.visible = false
+}
+const onBeforeOk = async () => {
+  if (props.beforeClose) {
+    const res = await props.beforeClose()
+    if (res) return false
+    else {
+      if (props.api) {
+        return requestIt()
+      }
+      return true
+    }
+  }
+}
+
+const onOk = async () => {
+  // onBeforeOk()
+  // data.visible = false
+  // $emits('success', data.visible)
 }
 const onCancel = () => {
   data.visible = false
+  $emits('cancel', data.visible)
 }
-const $emits = defineEmits(['on-success'])
+
+const $emits = defineEmits(['success', 'cancel'])
 defineExpose({ open })
 </script>
 

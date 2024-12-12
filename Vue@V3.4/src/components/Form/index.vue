@@ -1,11 +1,16 @@
 <template>
-  <a-form ref="formRef" v-bind="formProps" :model="model" @submit="submit" @submit-success="submitSuccess" @submit-failed="submitFailed">
-    <slot />
+  <a-form ref="formRef" v-bind="formProps" :model="model" @submit="submit" @submit-success="submitSuccess"
+    @submit-failed="submitFailed">
+    <div style="max-width: 100%;">
+      <a-row :gutter="[16, 0]" style="margin: 0;">
+        <slot />
+      </a-row>
+    </div>
   </a-form>
 </template>
 
 <script setup lang="ts">
-import { defineEmits } from 'vue'
+import { defineEmits, ref } from 'vue'
 const props = defineProps({
   model: {
     type: Object,
@@ -23,14 +28,14 @@ const props = defineProps({
   labelColProps: {
     type: Object,
     default: () => ({
-      span: 5,
+      span: 6,
       offset: 0
     })
   },
   wrapperColProps: {
     type: Object,
     default: () => ({
-      span: 19,
+      span: 18,
       offset: 0
     })
   },
@@ -63,12 +68,14 @@ const formProps = {
   ...otherProps,
   layout: otherProps.layout as 'horizontal' | 'vertical' | 'inline',
   size: otherProps.size as 'mini' | 'small' | 'medium' | 'large',
-  labelAlign: otherProps.labelAlign as 'left' | 'right'
+  labelAlign: otherProps.labelAlign as 'left' | 'right',
+  autoLabelWidth: false,
 }
-
+const formRef = ref()
 const $emits = defineEmits(['submit', 'submits-success', 'submits-failed'])
 
 const submit = (value: any) => {
+  console.log({ 'submit': value })
   $emits('submit', value)
 }
 
@@ -81,7 +88,7 @@ const submitFailed = (value: any) => {
   console.log({ 'submits-failed': value })
   $emits('submits-failed', value)
 }
+defineExpose({ formRef })
 </script>
 
-<style>
-</style>
+<style></style>

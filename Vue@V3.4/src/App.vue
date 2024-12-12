@@ -22,7 +22,9 @@
       </nav>
     </div>
   </header> -->
-  <RouterView />
+  <div class="theme-default">
+    <RouterView />
+  </div>
 
 </template>
 
@@ -34,5 +36,17 @@ body {
   overflow: hidden;
   margin: 0;
   padding: 0;
+}
+</style>
+<style lang="less">
+.theme-default {
+  @font: 14px;
+  .s-f-14(@font);
+}
+
+.s-f-14(@font) {
+  @import '@arco-design/web-vue/dist/arco.less';
+  @font-size-body-3: @font;
+
 }
 </style>

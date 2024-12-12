@@ -580,7 +580,7 @@ const menuRouterHelper: any = {
           itemResult.push(item)
         } else if (el.rightType == 3 && el.component) {
           try {
-            console.log(item)
+            // console.log(item)
             for (const key in viewsModules) {
               const url = `/src/views/${el.component.replace('@/views/', '').replace('.vue', '')}/index.vue`
               // viewsModules

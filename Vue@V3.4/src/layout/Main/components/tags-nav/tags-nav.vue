@@ -3,7 +3,9 @@ import { computed, nextTick, onMounted, ref, watch } from 'vue';
 import type { Component } from 'vue';
 import BScroll from 'better-scroll'
 import { useAppStore } from '@/stores/modules/app';
+import { useRouter } from 'vue-router';
 const appStore = useAppStore()
+const router = useRouter()
 
 defineOptions({
   name: 'PageTab'
@@ -94,11 +96,12 @@ function handleMouseup(e: MouseEvent) {
         <div @mouseup="handleMouseup">
           <slot name="prefix"></slot>
           <slot>
-            <div class="scroll-item" v-for="tab in navTabs" :key="tab.path">{{ tab.meta.title }}</div>
+            <div class="scroll-item" v-for="tab in navTabs" @click="router.push(tab.path)" :key="tab.path">{{
+              tab.meta.title }}</div>
             <!-- <div class="scroll-item" v-for="(item, index) in emojis" :key="index">{{ item }}</div> -->
           </slot>
           <slot name="suffix">
-            <div v-if="closable"
+            <div v-if="props.closable"
               class=":soy: relative h-16px w-16px inline-flex items-center justify-center rd-50% text-14px"
               :class="[style['svg-close']]" @click.stop="handleClose">
               <svg width="1em" height="1em" viewBox="0 0 1024 1024">
@@ -118,10 +121,10 @@ function handleMouseup(e: MouseEvent) {
 <style scoped>
 .scroll-wrapper {
   position: relative;
-  width: 20%;
-  margin: 80px auto;
+  /* width: 20%; */
+  /* margin: 80px auto; */
   white-space: nowrap;
-  border: 3px solid #42b983;
+  /* border: 3px solid #42b983; */
   border-radius: 5px;
   overflow: hidden;
 }
@@ -133,7 +136,7 @@ function handleMouseup(e: MouseEvent) {
 .scroll-item {
   height: 50px;
   line-height: 50px;
-  font-size: 24px;
+  font-size: 14px;
   display: inline-block;
   text-align: center;
   padding: 0 10px;

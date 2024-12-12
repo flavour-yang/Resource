@@ -17,7 +17,8 @@
       </a-menu>
       <a-layout-sider :theme="app.theme" class="right-sider">
         <a-space>
-          <a-dropdown @select="handleSelect">
+          <!-- @select="handleSelect" -->
+          <a-dropdown>
             <a-avatar :size="32" style="cursor: pointer;">{{ '头像' }}</a-avatar>
             <template #content>
               <a-doption>修改密码</a-doption>
@@ -30,7 +31,7 @@
     </a-layout>
     <!-- :value="$route"  @input="handleClick" :list="tagNavList" @on-close="handleCloseTag" -->
     <a-layout-content>
-      <Breadcrumb />
+      <!-- <Breadcrumb /> -->
       <tags-nav />
       <router-view />
     </a-layout-content>
